@@ -6,8 +6,8 @@ import random
 
 
 
-BASE_URL = "http://127.0.0.1:4080"
-# BASE_URL = "https://nexonotp.in"
+# BASE_URL = "http://127.0.0.1:4080"
+BASE_URL = "https://nexonotp.in"
 
 def configuration_data():
     configuration_file_path = r"c:\Users\user\Desktop\jiomart_bugs\the_gtx_autonomous\configuration.json"
@@ -61,21 +61,15 @@ def read_mock_names():
 
 
 
-def get_profile_info(profile_local_credentials_name):
-    # Check if the file exists
-    if os.path.exists(profile_local_credentials_name):
-        try:
-            with open(profile_local_credentials_name, 'r', encoding='utf-8') as file:
-                data = json.load(file)[0]
-            return data
-        except json.JSONDecodeError as e:
-            print(f"Error: File exists but contains invalid JSON - {e}")
-            return None
-        except Exception as e:
-            print(f"Unexpected error while reading the file: {e}")
-            return None
-    else:
-        return False
+def get_profile_info(path):
+    """Fetch profile info from a specific json file via the control center"""
+    try:
+        resp = requests.get(f"{BASE_URL}/api/read/json_file", params={"file_path": path})
+        if resp.status_code == 200 and resp.json().get("success"):
+            return resp.json().get("data")
+    except:
+        return None
+    return None
 
 
 def set_address(specific_headers, payload: dict):
