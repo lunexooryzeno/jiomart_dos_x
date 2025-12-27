@@ -1936,7 +1936,6 @@ if __name__ == "__main__":
         current_agent_idx = args.idx
         environment = "cloud"
         executions = [environment, "both"]
-        input(f"Cloud Autonomous Agent #{current_agent_idx}. Press Enter to continue...")
         start_agent(current_agent_idx, executions)
     except KeyboardInterrupt:
         current_state = "stopped"

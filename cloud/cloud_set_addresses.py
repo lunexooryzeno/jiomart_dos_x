@@ -270,7 +270,6 @@ def log_status(message, state="running", progress=None):
     except:
         pass
 
-input("Cloud Set Address Module Loaded. Press Enter to start...")
 
 while True:
     try:

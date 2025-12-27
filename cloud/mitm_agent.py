@@ -11,7 +11,5 @@ args = parser.parse_args()
 current_agent_idx = args.idx
 
 
-input(f"Cloud Mitm Agent #{current_agent_idx}. Press Enter to continue...")
-
 os.system(f'mitmdump -s intercept_requests.py -p 850{current_agent_idx}')
 # Note: The port number is dynamically set based on the agent index.
